@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AssetViewServer.Models;
 
 namespace AssetViewServer.Database.Collections
 {
-    public interface IEntityLinks
-    {
+	using AssetViewServer.Database.Models;
+
+	public interface IEntityLinks : IAssetViewCollection<EntityLink>
+	{
         Task<IEnumerable<EntityLink>> FindOnEitherSideAsync(string entityId);
     }
 }

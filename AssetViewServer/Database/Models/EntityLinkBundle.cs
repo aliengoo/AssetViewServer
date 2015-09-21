@@ -1,4 +1,4 @@
-﻿namespace AssetViewServer.Models
+﻿namespace AssetViewServer.Database.Models
 {
     public class EntityLinkBundle
     {

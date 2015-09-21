@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using AssetViewServer.Database;
-using AssetViewServer.Models;
 
 namespace AssetViewServer.Controllers
 {
-    public class EntityController
+	using AssetViewServer.Database.Models;
+
+	public class EntityController
     {
         private readonly IAssetViewDatabase _assetViewDatabase;
 

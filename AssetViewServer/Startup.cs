@@ -1,22 +1,20 @@
-﻿using System.Collections.Concurrent;
-using System.Web.Configuration;
-using System.Web.Http;
-using Owin;
-
+﻿using Microsoft.Owin;
+[assembly: OwinStartup(typeof(AssetViewServer.Startup))]
 namespace AssetViewServer
 {
-    public class Startup
+	using Owin;
+	using System.Web.Http;
+
+	using AssetViewServer.StartUp;
+
+	public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
 
-            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new
-            {
-                id = RouteParameter.Optional
-            });
-
-            app.UseWebApi(config);
-        }
+			WebApi.Register(app, config);
+			Dependencies.Register(config);
+		}
     }
 }

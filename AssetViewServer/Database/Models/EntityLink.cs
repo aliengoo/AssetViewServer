@@ -1,6 +1,6 @@
-﻿namespace AssetViewServer.Models
+﻿namespace AssetViewServer.Database.Models
 {
-    public class EntityLink
+    public class EntityLink : IDocument
     {
         public string Id { get; set; }
 

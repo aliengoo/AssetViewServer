@@ -1,12 +1,11 @@
-﻿
-using System.Collections.Generic;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson.Serialization.IdGenerators;
-
-namespace AssetViewServer.Models
+﻿namespace AssetViewServer.Database.Models
 {
-    public class Entity
+	using System.Collections.Generic;
+
+	using MongoDB.Bson.Serialization.Attributes;
+	using MongoDB.Bson.Serialization.IdGenerators;
+
+	public class Entity : IDocument
     {
         [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         public string Id { get; set; }

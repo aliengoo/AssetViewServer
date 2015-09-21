@@ -1,9 +1,13 @@
-﻿using AssetViewServer.Models;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 
 namespace AssetViewServer.Database
 {
-    public class AssetViewDatabase : IAssetViewDatabase
+	using AssetViewServer.Common;
+	using AssetViewServer.Database.Models;
+
+	using MongoDB.Bson.Serialization.Conventions;
+
+	public class AssetViewDatabase : IAssetViewDatabase
     {
         // fields
         private readonly IMongoDatabase _database;
@@ -11,12 +15,20 @@ namespace AssetViewServer.Database
         // properties
         public IMongoCollection<Entity> Entities => _database.GetCollection<Entity>("entities");
 
-        public IMongoCollection<EntityLink> EntityLinks => _database.GetCollection<EntityLink>("entity-links");
+        public IMongoCollection<EntityLink> EntityLinks => _database.GetCollection<EntityLink>("entityLinks");
 
-        // constructors
-        public AssetViewDatabase(string databaseUrl)
+		public IMongoDatabase Database => _database;
+
+		// constructors
+		static AssetViewDatabase()
+		{
+			var pack = new ConventionPack { new CamelCaseElementNameConvention() };
+
+		}
+
+        public AssetViewDatabase(IAssetViewConfiguration assetViewConfiguration)
         {
-            var url = MongoUrl.Create(databaseUrl);
+            var url = MongoUrl.Create(assetViewConfiguration.DatabaseUrl);
             _database =  new MongoClient(url).GetDatabase(url.DatabaseName);
         }
 
