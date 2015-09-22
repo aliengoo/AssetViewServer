@@ -3,8 +3,10 @@
 namespace AssetViewServer.Database
 {
 	using AssetViewServer.Common;
+	using AssetViewServer.Configuration;
 	using AssetViewServer.Database.Models;
 
+	using MongoDB.Bson;
 	using MongoDB.Bson.Serialization.Conventions;
 
 	public class AssetViewDatabase : IAssetViewDatabase
@@ -22,13 +24,17 @@ namespace AssetViewServer.Database
 		// constructors
 		static AssetViewDatabase()
 		{
-			var pack = new ConventionPack { new CamelCaseElementNameConvention() };
-
+			// register the conventions
+			var pack = new ConventionPack
+							{
+								new CamelCaseElementNameConvention(),
+								new EnumRepresentationConvention(BsonType.String)
+							};
 		}
 
-        public AssetViewDatabase(IAssetViewConfiguration assetViewConfiguration)
+		public AssetViewDatabase(IAssetViewConfiguration assetViewConfiguration)
         {
-            var url = MongoUrl.Create(assetViewConfiguration.DatabaseUrl);
+            var url = MongoUrl.Create(assetViewConfiguration.AssetViewConnectionString);
             _database =  new MongoClient(url).GetDatabase(url.DatabaseName);
         }
 

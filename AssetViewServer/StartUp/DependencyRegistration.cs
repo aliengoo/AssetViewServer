@@ -3,6 +3,7 @@
 	using System.Web.Http;
 
 	using AssetViewServer.Common;
+	using AssetViewServer.Configuration;
 	using AssetViewServer.Database;
 	using AssetViewServer.Database.Collections;
 	using AssetViewServer.Database.Models;
@@ -11,7 +12,7 @@
 
 	using Unity.WebApi;
 
-	public class Dependencies
+	public class DependencyRegistration
 	{
 		public static void Register(HttpConfiguration config)
 		{
