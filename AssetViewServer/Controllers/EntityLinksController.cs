@@ -10,19 +10,17 @@
 	[RoutePrefix("api/entity-links")]
 	public class EntityLinksController : AssetViewController<EntityLink, IEntityLinks>
 	{
-		private readonly IEntityLinkMaterialiser _entityLinkMaterialiser;
-
-		public EntityLinksController(IEntityLinks collection, IEntityLinkMaterialiser entityLinkMaterialiser)
+		public EntityLinksController(
+            IEntityLinks collection)
 			: base(collection)
 		{
-			_entityLinkMaterialiser = entityLinkMaterialiser;
 		}
-
-		[HttpGet]
-		[Route("bundle/{id}")]
-		public Task<EntityLinksMaterialised> GetBundle(string id)
-		{
-			return _entityLinkMaterialiser.GetLinksAsync(id);
-		}
+        
+        [HttpGet]
+        [Route("either-side/{id}")]
+        public Task<IEnumerable<EntityLink>> GetEitherSide(string entityId)
+	    {
+	        return Collection.FindOnEitherSideAsync(entityId);
+	    }
 	}
 }

@@ -12,41 +12,41 @@
 		where TDoc: IDocument
 		where TCollection : IAssetViewCollection<TDoc>
 	{
-		private readonly TCollection _collection;
+	    protected TCollection Collection { get; }
 
-		public AssetViewController(TCollection collection)
+	    public AssetViewController(TCollection collection)
 		{
-			_collection = collection;
+			Collection = collection;
 		}
-
+        
 		[HttpGet]
 		[Route("{id}")]
 		public async virtual Task<TDoc> GetAsync(string id)
 		{
-			return await _collection.FindByIdAsync(id);
+			return await Collection.FindByIdAsync(id);
 		}
 
 		[HttpPost]
 		[Route("{id}")]
 		public async virtual Task<TDoc> PostAsync(TDoc doc)
 		{
-			return await _collection.SaveAsync(doc);
+			return await Collection.SaveAsync(doc);
 		}
 
 		[HttpPut]
 		[Route("{id}")]
 		public async virtual Task<TDoc> PutAsync(TDoc doc)
 		{
-			return await _collection.SaveAsync(doc);
+			return await Collection.SaveAsync(doc);
 		}
 
 		[HttpDelete]
 		[Route("{id}")]
 		public async virtual Task<HttpResponseMessage> DeleteAsync(string id)
 		{
-			await _collection.DeleteAsync(id);
+			await Collection.DeleteAsync(id);
 
 			return new HttpResponseMessage(HttpStatusCode.OK);
 		}
-	}
+	}   
 }
