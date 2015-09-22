@@ -18,10 +18,15 @@ namespace AssetViewServer.StartUp
 			// Dependencies must be resolved first - subsequent steps rely on it.
 			DependencyRegistration.Register(config);
 
+			JsonRegistration.Register(config);
+
 			WebApiRegistration.Register(app, config);
 
 			CorsRegistration.Register(app, config);
-			
+
+#if (DEBUG)
+			config.EnableSystemDiagnosticsTracing();
+#endif
 		}
     }
 }

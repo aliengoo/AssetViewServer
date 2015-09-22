@@ -1,5 +1,6 @@
 ﻿namespace AssetViewServer.StartUp
 {
+	using System.Configuration;
 	using System.Web.Http;
 
 	using AssetViewServer.Common;
@@ -17,14 +18,15 @@
 		public static void Register(HttpConfiguration config)
 		{
 			var c = new UnityContainer();
+			config.Properties["container"] = c;
 
 			config.DependencyResolver = new UnityDependencyResolver(c);
 
 			// TODO: Dependencies here
 
 			// Common dependencies
-			c.RegisterType<IAssetViewConfiguration, AssetViewConfiguration>();
-
+			c.RegisterType<IAssetViewConfiguration, AssetViewConfiguration>(new InjectionConstructor("assetView"));
+			
 			// Database dependencies
 			c.RegisterType<IAssetViewDatabase, AssetViewDatabase>();
 
@@ -33,7 +35,7 @@
 			c.RegisterType<IEntityLinks, EntityLinks>();
 
 			// Model dependencies
-			c.RegisterType<IEntityLinkage, EntityLinkage>();
+			c.RegisterType<IEntityLinkMaterialiser, EntityLinkMaterialiser>();
 
 		}
 	}

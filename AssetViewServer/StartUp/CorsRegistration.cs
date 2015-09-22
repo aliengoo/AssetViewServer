@@ -10,6 +10,7 @@
 	using AssetViewServer.Configuration;
 
 	using Microsoft.Owin.Cors;
+	using Microsoft.Practices.Unity;
 
 	using Owin;
 
@@ -23,9 +24,8 @@
 									AllowAnyMethod = true
 								};
 
-
-
-			var assetViewConfiguration = config.DependencyResolver.GetService(typeof(IAssetViewConfiguration)) as IAssetViewConfiguration;
+			var assetViewConfiguration =
+				(config.Properties["container"] as IUnityContainer).Resolve<IAssetViewConfiguration>();
 
 			if (assetViewConfiguration == null)
 			{

@@ -7,7 +7,7 @@
 
 	using MongoDB.Driver;
 
-	public class AssetViewCollection<TDoc> : IAssetViewCollection<TDoc>
+	public abstract class AssetViewCollection<TDoc> : IAssetViewCollection<TDoc>
 		where TDoc: IDocument
 	{
 		// properties
@@ -20,13 +20,12 @@
 		/// </summary>
 		/// <param name="collectionName">The collection name</param>
 		/// <param name="assetViewDatabase">The database</param>
-		public AssetViewCollection(string collectionName, IAssetViewDatabase assetViewDatabase)
+		protected AssetViewCollection(string collectionName, IAssetViewDatabase assetViewDatabase)
 		{
 			Collection = assetViewDatabase.Database.GetCollection<TDoc>(collectionName);
 		}
 
 		// methods
-
 		public async virtual Task<TDoc> FindByIdAsync(string id)
 		{
 			return await Collection.Find(FindByIdFilter(id)).FirstOrDefaultAsync();

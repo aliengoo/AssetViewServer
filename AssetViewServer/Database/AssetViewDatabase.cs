@@ -2,7 +2,6 @@
 
 namespace AssetViewServer.Database
 {
-	using AssetViewServer.Common;
 	using AssetViewServer.Configuration;
 	using AssetViewServer.Database.Models;
 
@@ -30,6 +29,8 @@ namespace AssetViewServer.Database
 								new CamelCaseElementNameConvention(),
 								new EnumRepresentationConvention(BsonType.String)
 							};
+
+			ConventionRegistry.Register("conventions", pack, t => true);
 		}
 
 		public AssetViewDatabase(IAssetViewConfiguration assetViewConfiguration)

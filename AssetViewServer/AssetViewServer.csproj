@@ -114,6 +114,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.Tracing, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.5.2.3\lib\net45\System.Web.Http.Tracing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -140,10 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AssetViewConfiguration.cs" />
+    <Compile Include="Configuration\CustomDirectRouteProvider.cs" />
     <Compile Include="Configuration\IAssetViewConfiguration.cs" />
     <Compile Include="Common\StringHelper.cs" />
     <Compile Include="Controllers\AssetViewController.cs" />
-    <Compile Include="Controllers\EntityLinkController.cs" />
+    <Compile Include="Controllers\EntityLinksController.cs" />
     <Compile Include="Controllers\EntitiesController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Database\AssetViewDatabase.cs" />
@@ -154,15 +159,17 @@
     <Compile Include="Database\Collections\IEntities.cs" />
     <Compile Include="Database\Collections\IEntityLinks.cs" />
     <Compile Include="Database\IAssetViewDatabase.cs" />
+    <Compile Include="Database\Models\EntityLinkMaterialised.cs" />
     <Compile Include="Database\Models\IDocument.cs" />
     <Compile Include="Database\Models\Entity.cs" />
     <Compile Include="Database\Models\EntityClassification.cs" />
-    <Compile Include="Database\Models\EntityLinkBundle.cs" />
+    <Compile Include="Database\Models\EntityLinksMaterialised.cs" />
     <Compile Include="Database\Models\EntityLink.cs" />
-    <Compile Include="Database\Models\EntityLinkage.cs" />
-    <Compile Include="Database\Models\IEntityLinkage.cs" />
+    <Compile Include="Database\Models\EntityLinkMaterialiser.cs" />
+    <Compile Include="Database\Models\IEntityLinkMaterialiser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp\CorsRegistration.cs" />
+    <Compile Include="StartUp\JsonRegistration.cs" />
     <Compile Include="StartUp\Startup.cs" />
     <Compile Include="StartUp\DependencyRegistration.cs" />
     <Compile Include="StartUp\WebApiRegistration.cs" />

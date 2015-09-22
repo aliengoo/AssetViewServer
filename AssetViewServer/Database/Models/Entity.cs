@@ -14,9 +14,11 @@
 
         public string Description { get; set; }
 
-        public string Icon { get; set; }    
+        public string Icon { get; set; }
 
-        public EntityClassification Classificiation { get; set; }
+		public List<string> Labels { get; set; }
+
+		public EntityClassification Classificiation { get; set; }
 
         public string Uri { get; set; }
 
