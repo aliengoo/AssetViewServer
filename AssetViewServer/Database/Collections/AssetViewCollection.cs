@@ -57,6 +57,13 @@
 			return deleteResult.DeletedCount == 1;
 		}
 
+		public async Task<bool> Exists(FilterDefinition<TDoc> filter)
+		{
+			var count = await Collection.CountAsync(filter);
+
+			return count > 0;
+		}
+
 		protected virtual FilterDefinition<TDoc> FindByIdFilter(string id)
 		{
 			return Builders<TDoc>.Filter.Eq(d => d.Id, id);

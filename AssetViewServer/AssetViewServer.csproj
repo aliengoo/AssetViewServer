@@ -160,6 +160,9 @@
     <Compile Include="Database\Collections\IEntityLinks.cs" />
     <Compile Include="Database\IAssetViewDatabase.cs" />
     <Compile Include="Database\Models\EntityLinkMaterialised.cs" />
+    <Compile Include="Database\Models\EntityLinkResult.cs" />
+    <Compile Include="Database\Models\EntityLinkValidator.cs" />
+    <Compile Include="Database\Models\EntityValidator.cs" />
     <Compile Include="Database\Models\IDocument.cs" />
     <Compile Include="Database\Models\Entity.cs" />
     <Compile Include="Database\Models\EntityClassification.cs" />
@@ -167,6 +170,9 @@
     <Compile Include="Database\Models\EntityLink.cs" />
     <Compile Include="Database\Models\EntityLinkMaterialiser.cs" />
     <Compile Include="Database\Models\IEntityLinkMaterialiser.cs" />
+    <Compile Include="Database\Models\IEntityLinkValidator.cs" />
+    <Compile Include="Database\Models\IEntityValidator.cs" />
+    <Compile Include="Database\Models\Sides.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUp\CorsRegistration.cs" />
     <Compile Include="StartUp\JsonRegistration.cs" />

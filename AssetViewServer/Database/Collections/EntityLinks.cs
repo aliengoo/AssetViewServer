@@ -27,5 +27,32 @@ namespace AssetViewServer.Database.Collections
 
             return await Collection.Find(query).ToListAsync();
         }
+
+		public Task<IEnumerable<EntityLink>> FindOnLhs(string entityId)
+		{
+			return FindOnSide(Side.Lhs, entityId);
+		}
+
+		public Task<IEnumerable<EntityLink>> FindOnRhs(string entityId)
+		{
+			return FindOnSide(Side.Rhs, entityId);
+		}
+
+		private async Task<IEnumerable<EntityLink>> FindOnSide(Side side, string entityId)
+		{
+			
+			var filter = side == Side.Lhs
+							? Builders<EntityLink>.Filter.Eq(el => el.Rhs, entityId)
+							: Builders<EntityLink>.Filter.Eq(el => el.Lhs, entityId);
+
+			return await Collection.Find(filter).ToListAsync();
+		}
+
+		public async new Task<EntityLinkResult> SaveAsync(EntityLink entityLink)
+		{
+			// before saving, the lhs, rhs and link entities must exist
+
+			
+		}
     }
 }

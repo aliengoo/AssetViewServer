@@ -8,5 +8,9 @@ namespace AssetViewServer.Database.Collections
 	public interface IEntityLinks : IAssetViewCollection<EntityLink>
 	{
         Task<IEnumerable<EntityLink>> FindOnEitherSideAsync(string entityId);
+
+		Task<IEnumerable<EntityLink>> FindOnLhs(string entityId);
+
+		Task<IEnumerable<EntityLink>> FindOnRhs(string entityId);
     }
 }

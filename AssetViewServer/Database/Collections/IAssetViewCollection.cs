@@ -17,5 +17,7 @@
 		Task<TDoc> SaveAsync(TDoc doc);
 
 		Task<bool> DeleteAsync(string id);
+
+		Task<bool> Exists(FilterDefinition<TDoc> filter);
 	}
 }
